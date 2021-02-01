@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xieze.springcloud.repository.PaymentMapper">
+
+    <insert id="create" parameterType="com.xieze.springcloud.entity.Payment" useGeneratedKeys="true" keyProperty="id">
+        insert  into payment(order_no) values (#{orderNo})
+    </insert>
+
+    <resultMap id="BaseResultMap" type="com.xieze.springcloud.entity.Payment">
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <id column="order_no" property="orderNo" jdbcType="VARCHAR"></id>
+    </resultMap>
+
+    <select id="getPaymentById" resultMap="BaseResultMap">
+        select id, order_no from payment where id = #{id}
+    </select>
+</mapper>
